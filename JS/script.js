@@ -1,4 +1,3 @@
-// Animation de pixels mouvants en arrière-plan
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -26,7 +25,6 @@ function animate() {
 }
 animate();
 
-// Animation des barres de progression avec un délai pour simuler un chargement progressif
 window.addEventListener("load", () => {
     document.querySelectorAll(".fill").forEach((bar) => {
         const targetWidth = bar.getAttribute("style").match(/\d+/)[0] + "%";
