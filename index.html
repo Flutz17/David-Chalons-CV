@@ -1,79 +1,376 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV - David Chalons</title>
-    <link rel="stylesheet" href="CSS/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-</head>
-<body>
-    <canvas id="background"></canvas>
-    <div id="cv" class="retro-style">
-        <header>
-            <h1 class="pixel-text">David Chalons</h1>
-            <p class="subtitle">Étudiant de 1er année en Développement de Jeux Vidéo</p>
-        </header>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <div class="window hidden" data-id="me">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/photo.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          David_Chalons.png
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <img src="assets/david.jpg" alt="photo" style="width: 200px" />
+      </div>
+    </div>
 
-        <section class="info">
-            <h2>Informations personnelles</h2>
-            <p>Email pro: <a href="mailto:david.chalons.com@gmail.com">david.chalons.com@gmail.com</a></p>
-            <p>Localisation: Chicoutimi, Québec</p>
-            <p>Permis: B - Véhicule léger</p>
-            <p><a href="https://www.linkedin.com/in/david-chalons-26928a1a4/" target="_blank">LinkedIn</a></p>
-            <p><a href="https://divad17com.wixsite.com/portfolio" target="_blank">Portfolio</a></p>
-        </section>
+    <div class="window hidden" data-id="contact">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/mail.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          Contact.pdf
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          <strong>Adresse :</strong>
+          <a
+            href="https://www.google.com/maps/place/Chicoutimi,+QC"
+            target="_blank"
+            >Chicoutimi, Québec</a
+          >
+        </p>
+        <p>
+          <strong>Téléphone :</strong>
+          <a href="tel:+15816686927">+1 (581) 668-6927</a>
+        </p>
+        <p>
+          <strong>Courriel :</strong>
+          <a href="mailto:david.chalons.com@gmail.com"
+            >david.chalons.com@gmail.com</a
+          >
+        </p>
+      </div>
+    </div>
 
-        <section class="skills">
-            <h2>Compétences</h2>
-            <div class="skill-container">
-                <div class="skill"><span>C++</span><div class="bar"><div class="fill animated" style="width: 30%;"></div></div></div>
-                <div class="skill"><span>HTML & CSS</span><div class="bar"><div class="fill animated" style="width: 80%;"></div></div></div>
-                <div class="skill"><span>PHP</span><div class="bar"><div class="fill animated" style="width: 50%;"></div></div></div>
-                <div class="skill"><span>REACT</span><div class="bar"><div class="fill animated" style="width: 50%;"></div></div></div>
-                <div class="skill"><span>SQL</span><div class="bar"><div class="fill animated" style="width: 70%;"></div></div></div>
-                <div class="skill"><span>Unreal</span><div class="bar"><div class="fill animated" style="width: 30%;"></div></div></div>
-                <div class="skill"><span>Godot</span><div class="bar"><div class="fill animated" style="width: 30%;"></div></div></div>
-                <div class="skill"><span>GDevelop</span><div class="bar"><div class="fill animated" style="width: 50%;"></div></div></div>
-            </div>
-        </section>
+    <div class="window hidden" data-id="about">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/computer.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          ÀPropos.docs
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          Curieux, calme et passionné par le développement de jeux vidéo, je
+          possède une solide expérience en programmation et en conception de
+          projets ludiques. Je combine des compétences techniques (C++, React,
+          Unreal, etc.) avec une forte capacité à travailler en équipe,
+          apprendre rapidement et m’adapter à différents contextes. Ma
+          participation à des Game Jams, à des projets collaboratifs et mes
+          années d’étude m’ont permis de me forger un profil polyvalent et
+          créatif.
+        </p>
+      </div>
+    </div>
 
-        <section class="experience">
-            <h2>Expériences professionnelles</h2>
-            <div class="job"><h4>Plongeur et Bussboy - Complexe le Triangle</h4><p>02/2022 - 08/2024</p></div>
-            <div class="job"><h4>Coordinateur Externe - AGECRLI</h4><p>01/2024 - 06/2024</p></div>
-            <div class="job"><h4>Animateur - centre vacances</h4><p>06/2018 - 06/2018 <br> 07/2022 - 07/2022</p></div>
-        </section>
-        <section class="experience">
-            <h2>Stages</h2>
-            <div class="job"><h4>Informaticien - DGA</h4><p>12/2020 - 02/2021</p></div>
-            <div class="job"><h4>Informaticien - Hôpital Jacques Coeur</h4><p>09/2018 - 10/2018</p></div>
-            <div class="job"><h4>Informaticien - École Militaire</h4><p>02/2018 - 03/2018</p></div>
-        </section>
+    <div class="window hidden" data-id="skills">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/gear.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          Compétences.png
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content skills-grid">
+        <div class="skill">C++</div>
+        <div class="skill">HTML/CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">TypeScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Unreal Engine</div>
+        <div class="skill">GDevelop</div>
+        <div class="skill">Godot</div>
+        <div class="skill">Figma</div>
+      </div>
+    </div>
 
-        <section class="education">
-            <h2>Formation</h2>
-            <div class="skill"><span>Université du Québec à Chicoutimi - Baccalauréat en Développement Jeux Vidéo</span><div class="bar"><div class="fill animated" style="width: 10%;"></div></div></div>
-            <div class="skill"><span>Cégep de Rivière-du-Loup - DEC Informatique</span><div class="bar"><div class="fill animated" style="width: 100%;"></div></div></div>
-            <div class="skill"><span>Lycée la Colinière - BTS SIO SLAM</span><div class="bar"><div class="fill animated" style="width: 100%;"></div></div></div>
-        </section>
+    <div class="window hidden" data-id="exp">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/folder.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          Expériences.docs
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          <strong>Studio XP</strong> — Prof (2025) : Ateliers de création de
+          jeux pour enfants (Minecraft, Construct).
+        </p>
+        <p>
+          <strong>AGECRLI</strong> — Coordonnateur externe (2024) : Organisation
+          d'événements étudiants.
+        </p>
+        <p>
+          <strong>Complexe Le Triangle</strong> — Plongeur & Bussboy (2022–2024)
+        </p>
+        <p>
+          <strong>DGA</strong> — Stage développement web (2021) : Symfony,
+          création de site.
+        </p>
+        <p>
+          <strong>Hôpital Jacques Coeur</strong> — Technicien informatique
+          (2018)
+        </p>
+        <p>
+          <strong>École Militaire</strong> — Maintenance informatique (2018)
+        </p>
+      </div>
+    </div>
 
-        <section class="languages">
-            <h2>Langues</h2>
-            <p>Français - Natif</p>
-            <p>Anglais - Intermédiaire</p>
-        </section>
-        
-        <section class="hobbies">
-            <h2>Hobbies</h2>
-            <p>Jouer aux jeux vidéo</p>
-            <p>Développement et test de jeux vidéo</p>
-            <p>Écriture de récits</p>
-            <p>Pixel art et conception de dessins</p>
-        </section>
+    <div class="window hidden" data-id="edu">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/books.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          Formation.docs
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>🎓 UQAC — Baccalauréat en développement de jeux vidéo (2025–)</p>
+        <p>🎓 UQAC — Certificat en développement de jeux vidéo (2024–2025)</p>
+        <p>🎓 Cégep de Rivière-du-Loup — DEC en informatique (2021–2024)</p>
+        <p>🎓 BTS SIO SLAM — Lycée La Colinière (2019–2021)</p>
+        <p>
+          🎓 Bac Pro Systèmes Numériques — Lycée Pierre Émile Martin (2017–2019)
+        </p>
+        <p>🎓 Ambassadeur anti-harcèlement — Académie Orléans-Tours (2016)</p>
+      </div>
+    </div>
+
+    <div class="window hidden" data-id="lang">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/globe.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          LanguesEtIntérêts.docs
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          <strong>Langues :</strong> Français (natif), Anglais (intermédiaire)
+        </p>
+        <p>
+          <strong>Passions :</strong> Jeux vidéo, pixel art, écriture, dessin,
+          game design
+        </p>
+      </div>
+    </div>
+
+    <div class="window hidden" data-id="projects">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/links.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          ProjetsPersonnels.docs
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          <strong>Reve de dave</strong> — un compte instagrame avec toute mes
+          creations.
+        </p>
+        <p>
+          <strong>Projet "Maudit"</strong> — Jeu narratif avec changement de
+          styles graphiques. (en cours)
+        </p>
+        <p>
+          <strong>Projet "Angélique"</strong> — Récit d'horreur autour d'un
+          virus. (en cours)
+        </p>
+        <p>
+          <strong>App Meteo</strong> — Application qui donne la méteo avec
+          géolocalisation. (en cours)
+        </p>
+      </div>
+    </div>
+
+    <div class="window hidden" data-id="links">
+      <div class="window-header">
+        <span class="title">
+          <img
+            src="assets/icons/links.png"
+            alt="icon"
+            style="height: 16px; vertical-align: middle"
+          />
+          Liens.html
+        </span>
+        <span class="window-controls">
+          <button class="close-btn">✖</button>
+        </span>
+      </div>
+      <div class="section-content">
+        <p>
+          <a
+            class="link"
+            href="https://divad17com.wixsite.com/portfolio"
+            target="_blank"
+            >Portfolio</a
+          >
+        </p>
+        <p>
+          <a
+            class="link"
+            href="https://www.linkedin.com/in/david-chalons-26928a1a4/"
+            target="_blank"
+            >linkedin</a
+          >
+        </p>
+        <p>
+          <a class="link" href="https://flutzzie.itch.io/" target="_blank"
+            >Jeux sur Itch.io</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div id="taskbar">
+      <button id="start-button">Démarrer</button>
+
+      <div id="start-menu" class="hidden">
+        <ul>
+          <li data-target="me">
+            <img
+              src="assets/icons/photo.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            David_Chalons.png
+          </li>
+          <li data-target="contact">
+            <img
+              src="assets/icons/mail.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Contact.pdf
+          </li>
+          <li data-target="about">
+            <img
+              src="assets/icons/computer.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Àpropos.docs
+          </li>
+          <li data-target="skills">
+            <img
+              src="assets/icons/gear.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Compétences.png
+          </li>
+          <li data-target="exp">
+            <img
+              src="assets/icons/folder.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Expériences.docs
+          </li>
+          <li data-target="edu">
+            <img
+              src="assets/icons/books.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Formation.docs
+          </li>
+          <li data-target="lang">
+            <img
+              src="assets/icons/globe.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            LanguesEtIntérêts.docs
+          </li>
+          <li data-target="projects">
+            <img
+              src="assets/icons/links.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            ProjetsPersonnels.docs
+          </li>
+          <li data-target="links">
+            <img
+              src="assets/icons/links.png"
+              alt="icon"
+              style="height: 16px; vertical-align: middle"
+            />
+            Liens.html
+          </li>
+          <li id="reopen-all">Ouvrir tout</li>
+        </ul>
+      </div>
+      <a href="CV - David Chalons.pdf" download class="win95-btn"
+        >Télécharger CV</a
+      >
+      <div id="clock"></div>
     </div>
 
     <script src="JS/script.js"></script>
-</body>
+  </body>
 </html>
