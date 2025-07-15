@@ -14,14 +14,18 @@ body {
   background-color: #c0c0c0;
   border: 2px solid #000;
   box-shadow: 4px 4px 0px #000;
-  min-width: 200px;
   z-index: 1;
   display: none; /* ← ajout */
-  min-width: 160px;
-  max-width: 500px;
+  min-width: 100px;
+  max-width: 1000px;
+  min-height: 100px;
+  max-height: 1000px;
   font-size: 10px;
   transform: scale(0.9);
-  transform-origin: top left;
+  transform-origin: bottom left;
+  box-sizing: border-box;
+  resize: both;
+  overflow: auto;
 }
 
 .section-content img {
@@ -34,7 +38,8 @@ body {
 }
 
 .window.show {
-  display: block; /* ← ajout */
+  display: block;
+  animation: retro-open 0.3s ease-out;
 }
 
 .window-header {
@@ -235,14 +240,6 @@ body {
   left: 20px;
 }
 
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 14px;
-  color: white;
-  cursor: pointer;
-}
-
 .title img {
   margin-right: 6px;
 }
@@ -279,4 +276,103 @@ body {
 
 .download-btn:hover {
   background-color: #a0a0a0;
+}
+
+@keyframes retro-open {
+  0% {
+    transform: translateY(100px) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(0.9); /* ton échelle normale */
+    opacity: 1;
+  }
+}
+
+.competence {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 16px;
+  border: 2px solid #000;
+  background-color: #c0c0c0;
+  box-shadow: inset 2px 2px 0 #fff, inset -2px -2px 0 #808080;
+  display: flex;
+  align-items: center;
+}
+
+.progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    to right,
+    navy 0px,
+    navy 4px,
+    transparent 4px,
+    transparent 6px
+  );
+}
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
+  color: black;
+}
+
+.bar {
+  display: flex;
+  gap: 2px;
+  background-color: #c0c0c0;
+  padding: 2px;
+  border: 2px solid #000;
+  width: fit-content;
+}
+
+.block {
+  width: 10px;
+  height: 14px;
+  background-color: #b0b0b0; /* Vide par défaut (gris clair) */
+  opacity: 0;
+  animation: appear 0.3s ease-in forwards;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+.block.filled {
+  background-color: navy; /* Remplie = bleu foncé */
+}
+
+.window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.control-btn,
+.close-btn {
+  background: #c0c0c0;
+  border: 1px solid #000;
+  padding: 0 4px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 16px;
+  height: 18px;
+  width: 18px;
+  cursor: default;
+}
+
+.control-btn:hover,
+.close-btn:hover {
+  background: #000080;
+  color: white;
 }

@@ -111,4 +111,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  function openWindow(id) {
+    const win = document.getElementById(id);
+    win.classList.add("show");
+
+    // Positionne vers le bas de la page (au-dessus de la taskbar)
+    win.style.top = window.innerHeight - win.offsetHeight - 40 + "px";
+    win.style.left = "20px"; // facultatif, personnalise si tu veux
+  }
 });
