@@ -17,15 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Gestion de la fermeture (croix)
-    const closeBtn = win.querySelector(".close-btn");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // ✅ évite le drag
-        win.classList.remove("show"); // ✅ ferme la fenêtre
+    const closeBtns = win.querySelectorAll(".close-btn");
+    closeBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        win.classList.remove("show");
       });
-    }
+    });
 
-    // Drag & Drop
+    // Drag & Drop souris et tactile avec pointer events
     const header = win.querySelector(".window-header");
     if (header) {
       let offsetX = 0;
@@ -33,53 +33,58 @@ document.addEventListener("DOMContentLoaded", () => {
       let isDragging = false;
 
       header.style.cursor = "grab";
+      header.style.touchAction = "none";
 
-      header.addEventListener("mousedown", (e) => {
+      const onPointerMove = (e) => {
+        if (!isDragging) return;
+        win.style.left = `${e.clientX - offsetX}px`;
+        win.style.top = `${e.clientY - offsetY}px`;
+      };
+
+      const onPointerUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        header.style.cursor = "grab";
+        document.removeEventListener("pointermove", onPointerMove);
+        document.removeEventListener("pointerup", onPointerUp);
+      };
+
+      header.addEventListener("pointerdown", (e) => {
         isDragging = true;
         offsetX = e.clientX - win.offsetLeft;
         offsetY = e.clientY - win.offsetTop;
         win.style.zIndex = zIndexCounter++;
         header.style.cursor = "grabbing";
-      });
 
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-        header.style.cursor = "grab";
-      });
-
-      document.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        win.style.left = `${e.clientX - offsetX}px`;
-        win.style.top = `${e.clientY - offsetY}px`;
+        document.addEventListener("pointermove", onPointerMove);
+        document.addEventListener("pointerup", onPointerUp);
       });
     }
   });
 
-  // Menu démarrer toggle
   const startButton = document.getElementById("start-button");
   const startMenu = document.getElementById("start-menu");
 
   if (startButton && startMenu) {
     startButton.addEventListener("click", () => {
       startMenu.classList.toggle("visible");
-      startMenu.classList.remove("hidden"); // ← ça enlève la classe cachée
+      startMenu.classList.remove("hidden");
     });
 
     document.addEventListener("click", (e) => {
       if (!startMenu.contains(e.target) && e.target !== startButton) {
         startMenu.classList.remove("visible");
-        startMenu.classList.add("hidden"); // ← on remet la classe cachée
+        startMenu.classList.add("hidden");
       }
     });
   }
 
-  // Bouton "Réouvrir tout" dans le menu démarrer
   const reopenAllBtn = document.getElementById("reopen-all");
   if (reopenAllBtn) {
     reopenAllBtn.addEventListener("click", () => {
-      windows.forEach((win, i) => {
+      windows.forEach((win) => {
         setTimeout(() => {
-          win.classList.remove("hidden"); // ← enlève la classe bloquante
+          win.classList.remove("hidden");
           win.classList.add("show");
           win.style.zIndex = zIndexCounter++;
         }, parseInt(win.dataset.delay || 0));
@@ -98,70 +103,16 @@ document.addEventListener("DOMContentLoaded", () => {
   updateClock();
   setInterval(updateClock, 1000);
 
-  // Gestion de l'ouverture des fenêtres via le menu démarrer
   const menuItems = document.querySelectorAll("#start-menu li[data-target]");
   menuItems.forEach((item) => {
     const targetId = item.dataset.target;
     item.addEventListener("click", () => {
       const win = document.querySelector(`.window[data-id="${targetId}"]`);
       if (win) {
-        win.classList.remove("hidden"); // ← ajoute ceci
+        win.classList.remove("hidden");
         win.classList.add("show");
         win.style.zIndex = zIndexCounter++;
       }
-    });
-  });
-  function openWindow(id) {
-    const win = document.getElementById(id);
-    win.classList.add("show");
-
-    // Positionne vers le bas de la page (au-dessus de la taskbar)
-    win.style.top = window.innerHeight - win.offsetHeight - 40 + "px";
-    win.style.left = "20px"; // facultatif, personnalise si tu veux
-  }
-  // Gestion de la fermeture (croix)
-  const closeBtn = win.querySelector(".close-btn");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // évite de déclencher le drag
-      win.classList.remove("show"); // cache la fenêtre
-    });
-  }
-
-  // Drag tactile (mobile)
-  document.querySelectorAll(".window-header").forEach((header) => {
-    const currentWindow = header.parentElement;
-    let offsetX = 0;
-    let offsetY = 0;
-    let isDragging = false;
-
-    header.style.touchAction = "none"; // Important pour empêcher le scrolling
-
-    const onPointerMove = (e) => {
-      if (!isDragging) return;
-      currentWindow.style.left = `${e.clientX - offsetX}px`;
-      currentWindow.style.top = `${e.clientY - offsetY}px`;
-    };
-
-    const onPointerUp = (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      currentWindow.releasePointerCapture(e.pointerId);
-      header.style.cursor = "grab";
-      currentWindow.removeEventListener("pointermove", onPointerMove);
-      currentWindow.removeEventListener("pointerup", onPointerUp);
-    };
-
-    header.addEventListener("pointerdown", (e) => {
-      isDragging = true;
-      offsetX = e.clientX - currentWindow.offsetLeft;
-      offsetY = e.clientY - currentWindow.offsetTop;
-      currentWindow.setPointerCapture(e.pointerId);
-      currentWindow.style.zIndex = zIndexCounter++;
-      header.style.cursor = "grabbing";
-
-      currentWindow.addEventListener("pointermove", onPointerMove);
-      currentWindow.addEventListener("pointerup", onPointerUp);
     });
   });
 });

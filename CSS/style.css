@@ -11,6 +11,7 @@ body {
 
 .window {
   position: absolute;
+  touch-action: none;
   background-color: #c0c0c0;
   border: 2px solid #000;
   box-shadow: 4px 4px 0px #000;
