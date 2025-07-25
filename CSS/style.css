@@ -51,6 +51,7 @@ body {
   align-items: center;
   cursor: grab;
   user-select: none;
+  touch-action: none;
 }
 
 .window-header.dragging {

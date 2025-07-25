@@ -119,4 +119,49 @@ document.addEventListener("DOMContentLoaded", () => {
     win.style.top = window.innerHeight - win.offsetHeight - 40 + "px";
     win.style.left = "20px"; // facultatif, personnalise si tu veux
   }
+  // Gestion de la fermeture (croix)
+  const closeBtn = win.querySelector(".close-btn");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // évite de déclencher le drag
+      win.classList.remove("show"); // cache la fenêtre
+    });
+  }
+
+  // Drag tactile (mobile)
+  document.querySelectorAll(".window-header").forEach((header) => {
+    const currentWindow = header.parentElement;
+    let offsetX = 0;
+    let offsetY = 0;
+    let isDragging = false;
+
+    header.style.touchAction = "none"; // Important pour empêcher le scrolling
+
+    const onPointerMove = (e) => {
+      if (!isDragging) return;
+      currentWindow.style.left = `${e.clientX - offsetX}px`;
+      currentWindow.style.top = `${e.clientY - offsetY}px`;
+    };
+
+    const onPointerUp = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      currentWindow.releasePointerCapture(e.pointerId);
+      header.style.cursor = "grab";
+      currentWindow.removeEventListener("pointermove", onPointerMove);
+      currentWindow.removeEventListener("pointerup", onPointerUp);
+    };
+
+    header.addEventListener("pointerdown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - currentWindow.offsetLeft;
+      offsetY = e.clientY - currentWindow.offsetTop;
+      currentWindow.setPointerCapture(e.pointerId);
+      currentWindow.style.zIndex = zIndexCounter++;
+      header.style.cursor = "grabbing";
+
+      currentWindow.addEventListener("pointermove", onPointerMove);
+      currentWindow.addEventListener("pointerup", onPointerUp);
+    });
+  });
 });
